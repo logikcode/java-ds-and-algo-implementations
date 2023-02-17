@@ -1,0 +1,46 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Challenge {
+    public static ArrayList<Integer> withdraw(int amount) {
+
+      ArrayList<Integer> asList = new ArrayList<>();
+      final int HUNDRED_DENO = 100;
+      final int FIFTY_DENO = 50;
+      final int TWENTY_DENO = 20;
+      int balance = 0;
+        int hundreds = 0;
+      int fiftys = 0
+
+      if (amount == 0 || amount < 0){
+        return asList;
+      }
+
+      if(amount > HUNDRED_DENO){
+        int i = 0;
+        balance = amount - 100;
+        hundreds++;
+        while(balance > HUNDRED_DENO){
+          balance = amount - 100;
+          hundreds++;
+        }
+
+        asList.add(hundreds);
+        if (balance % FIFTY_DENO == 0){
+          while(balance <= FIFTY_DENO){
+          balance = amount - 50;
+          fiftys++;
+        }
+          asList.add(fiftys);
+        }
+      }
+      else if()
+
+
+
+      if()
+
+     // new ArrayList<Integer>(Arrays.asList(0, 0, 0))
+        return asList ;
+    }
+}
