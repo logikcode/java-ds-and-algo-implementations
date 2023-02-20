@@ -27,32 +27,73 @@ public class LinkedListImpl {
             createNode(nodeValue);
             return "Node created";
         }
-        if (location <= ZERO){
+        if (location == ZERO){
             // assume the node should be added at first spot
+            System.out.println("Executing adding in head block "+ "SIZE = "+ size + "VALUE = "+ nodeValue);
         newNode.nextNode = head;
         head = newNode;
         size += 1;
         }
         else if(location > size ){
             // assume to be added to tail
-            newNode.nextNode = null;
+            System.out.println("Executing adding in tail block "+ "SIZE = "+ size + " VALUE = "+ nodeValue);
 
+            newNode.nextNode = null;
             tail.nextNode = newNode;
+
             tail = newNode;
             size += 1;
         }
         else {
-            int startPoint = 0;
-            Node currentNode = head;
-            while (startPoint <= size - 1){
-               currentNode = currentNode.nextNode;
-               startPoint++;
+            System.out.println("Executing adding at specified block" + "SIZE = "+ size + "VALUE = "+ nodeValue);
+            Node nodeAtIndex = traverseToIndex(location);
 
-            }
-            currentNode.nextNode = newNode;
-            currentNode.nextNode = null;
-            System.out.println(currentNode);
+           Node nodeAfterCurrent = nodeAtIndex.nextNode;
+           newNode.nextNode = nodeAfterCurrent;
+           nodeAtIndex.nextNode = newNode;
+            size++;
+            System.out.println(nodeAtIndex);
         }
         return "";
+    }
+
+    private Node traverseToIndex(int index){
+        int startPoint = 0;
+        Node currentNode = head;
+        while (startPoint != index -1){
+            currentNode = currentNode.nextNode;
+            startPoint++;
+
+        }
+        return currentNode;
+    }
+
+    public void removeNode(int atIndex){
+            Node nodeAtIndex = traverseToIndex(atIndex);
+            Node unwantedNode = nodeAtIndex.nextNode;
+            nodeAtIndex.nextNode = unwantedNode.nextNode;
+            size--;
+            System.out.println(unwantedNode);
+            System.out.println("SIZE AFTER REMOVAL "+ size);
+
+    }
+
+    public void printAllNodes(){
+        int index = 0;
+
+        Node currentNode = head;
+
+        while (index < size - 1){
+            System.out.print(currentNode);
+            index++;
+            if (index < (size - 1) ){
+                System.out.print(" -> ");
+
+            }
+
+            currentNode = currentNode.nextNode;
+
+        }
+        System.out.println("\n");
     }
 }
