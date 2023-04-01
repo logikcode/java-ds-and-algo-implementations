@@ -52,10 +52,42 @@ public class BinarySearchTree {
             } else {
                 return currentNode;
             }
-
         }
 
         return null;
+    }
+
+    public void remove(int value){
+        // check if node exist
+        if (root == null){
+            return;
+        }
+        BSTNode currentNode = root;
+        while (currentNode != null){
+            if (value > currentNode.value){
+                currentNode = currentNode.rightNode;
+
+            } else if(value < currentNode.value){
+                currentNode = currentNode.leftNode;
+            }
+            else {
+                BSTNode nextNode;
+                if (currentNode.rightNode != null && currentNode.leftNode != null){
+
+                    if (currentNode.rightNode.value > currentNode.leftNode.value){
+                            nextNode = currentNode.rightNode;
+                            nextNode.leftNode = currentNode.leftNode;
+                            currentNode = nextNode;
+                    }
+
+                } else if (currentNode.rightNode != null){
+
+                    currentNode = null;
+                }
+
+            }
+
+        }
     }
 
 }
